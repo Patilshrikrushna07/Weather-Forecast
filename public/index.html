@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link href="images/weather/weatherFavicon.png" rel="icon">
+
+    <!--Tailwind css-->
+    <link href="css/tailwind.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="weather.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!--==========================
+  Header
+  ============================-->
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <h1><a href="#hero">Weather Forecast</a></h1>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="#">My Website</a></li>
+                    <li><a href="https://shrikrushnapatil.social">About Me</a></li>
+            
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <div id="main"
+        style="background-image: url(images/noteBGsmall2.jpg); background-size:cover; min-height:100vh;">
+        <br><br><br><br><br>
+
+        <div style="align-items: center; height:200vh">
+            <center>
+                <h4>Get weather details at your place</h4>
+                <br>
+
+
+                <input type="text" id="search" class="text-center text-dark rounded-l-lg" autofocus="autofocus"
+                    placeholder="Your address/city" class="rounded-left">
+
+                <button type="button" onclick="getDetails()" id="searchBtn">
+                    <i class="fa fa-search text-dark"></i>
+                </button>
+
+                <br><br>
+                <div id="loaderWrapper">
+                    <div id="loader"></div>
+                </div>
+
+                <div id="weatherExhibition" style="visibility:hidden;">
+                    <br>
+                    <div id="currentData" class="rounded-tr-lg dataSections">
+                        <div id="boringData">
+                            <div class="boringPart">
+                                <span class="boringLabel">Wind:</span>
+                                <span class="boringValue" id="currentWindSpeed">00</span>
+                                <span class="boringUnit">mph</span>
+                            </div>
+
+
+
+
+
+                            <div class="boringPart">
+                                <span class="boringLabel">Humidity:</span>
+                                <span class="boringValue" id="currentHumidity">00</span>
+                                <span class="boringUnit">%</span>
+                            </div>
+
+                            <div class="boringPart">
+                                <span class="boringLabel">Visibility:</span>
+                                <span class="boringValue" id="currentVisibility">00</span>
+                                <span class="boringUnit" id="visibilityUnit">m</span>
+                            </div>
+
+                            <div class="boringPart">
+                                <span class="boringLabel">UV index:</span>
+                                <span class="boringValue" id="currentUVI">00</span>
+                            </div>
+                        </div>
+                        <div id="currentSection">
+                            <div class="entity">
+                                <span style="font-size:30px; color:red;"><i class="fas fa-map-marker-alt"></i> </span>
+                                <!--    Location   -->
+                                <span class="value" id="place">Default Location, Country</span>
+                            </div>
+                            <br>
+                            <div class="entity special">
+                                <span class="additionalInfo">
+                                    <span>Latitude:</span>
+                                    <span id="lat">00.00000</span>
+                                </span>
+                                <span class="additionalInfo">
+                                    <span>Longitude:</span>
+                                    <span id="long">00.00000</span>
+                                </span>
+
+                                <br>
+
+                            </div>
+                            <br>
+                            <div class="entity">
+                                <span class="additionalInfo" id="currTimeDate">Day, 00 Mon Year 00:00 ap</span>
+                            </div>
+                            <br>
+                            <div class="entity">
+                                <br>
+                                <span class="key" id="icon"><img src="images/weather/cloudy.png"
+                                        class="myIcons" id="represent"></span>
+                                <span>
+                                    <span class="imp" id="currentTemp">00.00</span>
+                                    <span class="imp">°C</span>
+                                </span>
+                                <span class="additionalInfo" style="font-size: 23px;"
+                                    id="currentRemark">Description</span>
+                                <br><br>
+                            </div>
+                            <div class="entity valignBlocks">
+                                <span class="entityPart">
+                                    <span class="key">Low:</span>
+                                    <span>
+                                        <span class="value" id="currentLow">00.00</span>
+                                        <span class="value">°C</span>
+                                    </span>
+                                </span>
+                                <span class="entityPart">
+                                    <span class="key">Feels like</span>
+                                    <span>
+                                        <span class="value" id="feelsLike">00.00</span>
+                                        <span class="value">°C</span>
+                                    </span>
+                                </span>
+                                <span class="entityPart">
+                                    <span class="key">High:</span>
+                                    <span>
+                                        <span class="value" id="currentHigh">00.00</span>
+                                        <span class="value">°C</span>
+                                    </span>
+                                </span>
+                            </div>
+                            <br>
+                            <div class="entity" id="iconicData">
+                                <span class="entityPart valignBlocks">
+                                    <span class="key"><img src="images/weather/sunrise.png"
+                                            class="myIcons"></span>
+                                    <span class="value" id="currentSunrise">00.00 am</span>
+                                </span>
+                                <span class="entityPart valignBlocks">
+                                    <span class="key">Dew point:</span>
+                                    <span>
+                                        <span class="value" id="currentDewPoint">00</span>
+                                        <span class="value">°C</span>
+                                    </span>
+                                </span>
+                                <span class="entityPart valignBlocks">
+                                    <span class="key"><img src="images/weather/cloudy.png"
+                                            class="myIcons"></span>
+                                    <span class="value" id="clouds">00</span>
+                                    <span class="value">%</span>
+                                </span>
+                                <span class="entityPart valignBlocks">
+                                    <span class="key"><img src="images/weather/sunset.png"
+                                            class="myIcons"></span>
+                                    <span class="value" id="currentSunset">00.00 pm</span>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <br>
+                        <span class="note">
+                            Time is as per the location you've searched for, not as per your local time !
+                            <br>
+                        </span>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <!-- Replace <!\-\-Temp-->
+                    <!-- with <i class="fas fa-angle-down"> -->
+                    <div class="dataSections" id="forecast">
+                        <div class="forecastSection">
+                            <div class="wrapper">
+                                <div id="dailyTitle">Next few hours</div>
+                                <br><br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachHour">
+                                    <span class="dailyDate dailyContent">00 ap</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+
+                            </div>
+                        </div>
+                        <div class="forecastSection">
+                            <div class="wrapper">
+                                <div id="dailyTitle">8 day forecast</div>
+                                <br><br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+                                <div class="dailyData eachDay">
+                                    <span class="dailyDate dailyContent">Day, Mon 00</span>
+
+                                    <span class="dailyContent">
+                                        <span><img src="images/weather/01d.png"
+                                                class="dailyIcons"></span>
+                                        <span class="dailyLow">00</span>
+                                        <span>to</span>
+                                        <span class="dailyHigh">00</span>
+                                        <span>°C</span>
+                                    </span>
+
+                                    <span class="descriptionContainer">
+                                        <span class="description">Default description</span>
+                                    </span>
+                                    <span class="expansion">
+                                        <!--Temp--></i>
+                                    </span>
+                                </div>
+
+                                <br>
+
+                            </div>
+                        </div>
+                        <br><br>
+                    </div>
+
+
+
+
+
+            </center>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    </div>
+    <script type="text/javascript" src="weather.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--==========================
+    Call To Action Section
+    ============================-->
+    <section id="call-to-action">
+        <div class="container wow fadeIn">
+            <div class="row">
+                <div class="col-lg-9 text-center text-lg-left">
+                    <h4 class="cta-title">
+                        <!-- Quote comes -->
+                      Debugging is twice as hard as writing the code in the first place.Therfore, 
+                      if you write the code as cleverly as possible, you are, by definition, 
+                      not smart enough to debug it.
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </section><!-- #call-to-action -->
+
+
+
+    <!--==========================
+        Contact Section
+      ============================-->
+    <section id="contact">
+        <div class="container wow fadeInUp">
+            <div class="section-header">
+                <h3 class="section-title">Contact</h3>
+            </div>
+        </div>
+
+        <div class="container wow fadeInUp mt-5">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-3 col-md-4">
+
+                    <div class="info">
+                        <div>
+                            <i class="fa fa-map-marker"></i>
+                            <p>Mumbai,<br>India</p>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-envelope"></i>
+                            <p><a href="mailto:patilshrikrushna77@gmail.com"
+                                    style="color: blue; text-decoration: underline;">patilshrikrushna77@gmail.com</a></p>
+                        </div>
+
+                        <div>
+                            <i class="fab fa-whatsapp"></i>
+                            <p><a href="https://wa.me/917666675306" style="color: blue; text-decoration: underline;">+91
+                                    766 667
+                                    5306</a></p>
+                        </div>
+                    </div>
+
+                    <a class="mySocialBtn" href="https://www.linkedin.com/in/shrikrushna-patil-3ab234223/">     <!-- linkdin-->
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a class="mySocialBtn" href="https://github.com/Patilshrikrushna07">  <!--github -->
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a class="mySocialBtn" href="#">  <!-- hacker rank -->
+                        <i class="fab fa-hackerrank"></i>
+                    </a>
+
+                </div>
+
+                <div class="col-lg-5 col-md-8">
+                    <div class="form">
+                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                        <div id="errormessage"></div>
+                        <form action="" method="post" role="form" class="contactForm">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                                    data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject"
+                                    placeholder="Subject" data-rule="minlen:4"
+                                    data-msg="Please enter at least 8 chars of subject" />
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="5" data-rule="required"
+                                    data-msg="Please write something for us" placeholder="Message"></textarea>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="text-center"><button type="submit">Send Message</button></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- #contact -->
+
+    </main>
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer class="text-gray-500 bg-gray-900 body-font">
+        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                    viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Shrikrushna Patil</span>
+            </a>
+            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">©
+                2022 —
+                <a href="https://github.com/Patilshrikrushna07" class="text-gray-600 ml-1" rel="noopener noreferrer"  
+                    target="_blank">@Shri Infotech</a>  <!-- #github -->
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a href="https://www.facebook.com/shrikrushna.janjal" class="text-gray-500"> <!-- #facebook -->
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="ml-3 text-gray-500"> <!-- #twitter -->
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
+                        <path
+                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/shrikrushna_patil_sp/" class="ml-3 text-gray-500">  <!-- #instagram -->
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/shrikrushna-patil-3ab234223/" class="ml-3 text-gray-500"> <!-- #linkdin -->
+                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                        <path stroke="none"
+                            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
+                        </path>
+                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                    </svg>
+                </a>
+            </span>
+        </div>
+    </footer>
+    <!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="lib/main.js"></script>
+</body>
+
+</html>

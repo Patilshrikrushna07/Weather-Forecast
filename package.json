@@ -1,0 +1,32 @@
+{
+  "name": "weatherforecast",
+  "version": "1.0.0",
+  "description": "- Geocode\r     - Find latitude, longitude and full address of given search query\r - Forecast\r     - Obtain weather details at current time as well as of upcoming week in JSON format",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js -e js,hbs,html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmkarPh/WeatherForecast.git"
+  },
+  "keywords": [
+    "weather",
+    "forecast"
+  ],
+  "author": "Omkar Phansopkar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OmkarPh/WeatherForecast/issues"
+  },
+  "homepage": "https://github.com/OmkarPh/WeatherForecast#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
+    "connect-slashes": "^1.4.0",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  }
+}
